@@ -2,6 +2,7 @@
 
 ## Projekto struktūra
 
+```
 egzaminas
 ├── CMakeLists.txt
 ├── Makefile
@@ -13,6 +14,7 @@ egzaminas
     ├── main.cpp
     ├── Print.hpp
     └── WordData.hpp
+```
 
 ## Užduoties formuluotė
 
