@@ -5,58 +5,10 @@
 #include <map>
 #include <string>
 #include <vector>
+#include "Buffer.hpp"
 #include "WordData.hpp"
 
 using namespace std;
-
-void addWordToCollection(const string& word,
-                         map<string, WordData>& collection,
-                         int lineIndex) {
-  if (word.empty()) {
-    return;
-  }
-
-  auto itterator = collection.find(word);
-
-  if (itterator == collection.end()) {
-    collection.insert({word, WordData(lineIndex)});
-  } else {
-    if (lineIndex != itterator->second.lineIndices.back()) {
-      itterator->second.lineIndices.push_back(lineIndex);
-    }
-
-    itterator->second.count++;
-  }
-}
-
-stringstream getBuffer(const string& filePath) {
-  ifstream file;
-  file.open(filePath);
-
-  if (!file) {
-    throw std::runtime_error("Error: file \"" + filePath +
-                             "\" could not be opened");
-  }
-
-  stringstream buffer;
-  buffer << file.rdbuf();
-  file.close();
-
-  return buffer;
-}
-
-void saveBuffer(const string& filePath, stringstream& buffer) {
-  std::ofstream file;
-  file.open(filePath);
-
-  if (!file) {
-    throw std::runtime_error("Error: file \"" + filePath +
-                             "\" could not be opened");
-  }
-
-  file << buffer.str();
-  file.close();
-}
 
 int getDistance(int previous, int current) {
   int prevNumDigits = to_string(previous).length();
@@ -80,18 +32,17 @@ int getDistance(int previous, int current) {
   return 0;
 }
 
-void crossReference(map<string, WordData>& collection,
-                    int numLines,
-                    const string& filePath) {
+void printCrossReference(map<string, WordData>& collection,
+                         int numLines,
+                         const string& filePath) {
   stringstream buffer;
 
   buffer << left << setw(15) << "word";
   for (int i = 0; i < numLines; i++) {
     buffer << (i + 1) << " ";
   }
-  buffer << endl;
 
-  buffer << string(15 + numLines * 3, '-') << endl;
+  buffer << endl << string(15 + numLines * 3, '-') << endl;
 
   for (auto key : collection) {
     if (key.second.count > 1) {
@@ -109,7 +60,7 @@ void crossReference(map<string, WordData>& collection,
     }
   }
 
-  saveBuffer(filePath, buffer);
+  saveToBuffer(filePath, buffer);
 }
 
 void printURLs(vector<string>& urls, const string& filePath) {
@@ -117,10 +68,10 @@ void printURLs(vector<string>& urls, const string& filePath) {
   for (string url : urls) {
     buffer << url << endl;
   }
-  saveBuffer(filePath, buffer);
+  saveToBuffer(filePath, buffer);
 }
 
-void wordCount(map<string, WordData>& collection, const string& filePath) {
+void printWordCount(map<string, WordData>& collection, const string& filePath) {
   stringstream buffer;
 
   buffer << left << setw(15) << "word"
@@ -134,5 +85,5 @@ void wordCount(map<string, WordData>& collection, const string& filePath) {
     }
   }
 
-  saveBuffer(filePath, buffer);
+  saveToBuffer(filePath, buffer);
 }

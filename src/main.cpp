@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include "Buffer.hpp"
 #include "Print.hpp"
 #include "WordData.hpp"
 
@@ -50,9 +51,11 @@ int main() {
     lineIndex++;
   }
 
-  crossReference(collection, lineIndex, "cross-reference.txt");
+  printCrossReference(collection, lineIndex, "cross-reference.txt");
   printURLs(urls, "urls.txt");
-  wordCount(collection, "word-count.txt");
+  printWordCount(collection, "word-count.txt");
 
+  cout << string(40, '-') << "\nThe program has finished successfully!\n"
+       << string(40, '-') << "\n";
   return 0;
 }
