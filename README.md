@@ -3,7 +3,7 @@
 ## Projekto struktūra
 
 ```
-egzaminas
+asociatyvus-konteineriai
 ├── CMakeLists.txt
 ├── Makefile
 ├── README.md
@@ -24,13 +24,18 @@ egzaminas
 4. Repozicija turi būti parengta pagal visus ankstesnių darbų galutinėms versijoms galiojančius reikalavimus.
 5. Papildoma užduotis iš asociatyvių konteinerių ir/ar std::string tematikos bus paskirta egzamino metu "individualiai"!
 
+
+## Programos veikimas
+
+Programa ieško failo `source.txt` ir dirba su juo.
+
 Programos veikimo pabaigoje yra sukuriami 3 failai:
 
-`cross-reference.txt`
+`cross-reference.txt` - cross-reference tipo lentelė
 
-`word-count.txt`
+`word-count.txt` - skirtingi žodžiai, ir kiek kartų jie buvo surasti tekste
 
-`urls.txt`
+`urls.txt` - surasti URL adresai
 
 ## Programos diegimas ir paleidimas
 
