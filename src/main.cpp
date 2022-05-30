@@ -12,7 +12,10 @@
 #define NON_WORD_PATTERN "[-.%,?!/;:\"'()\\]\\[*0-9]"
 #define URL_PATTERN                                     \
   "(((http|https)://)?www\\.)?[a-zA-Z0-9@:%._\\+~#?&//" \
-  "=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)"
+  "=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)|"  // match every
+                                                              // word that has
+                                                              // at inside
+                                                              // "\\b(?=\\w*at)\\w+\\b"
 
 using namespace std;
 

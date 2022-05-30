@@ -69,3 +69,6 @@ ip-connect.vn.ua	 Ukraine	Tier 1	Yes	http, https, rsync
 kernel.org
 
 https://america.mirror.pkgbuild.com
+
+vu.lt
+svetaine.site
